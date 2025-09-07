@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raw Tricks</title>
+    <title>CSS animation</title>
+    <link rel="shortcut icon" href="../mern.jpg" type="image/x-icon">
     <style>
         *{
             margin: 0;
@@ -12,24 +13,37 @@
         }
         #div{
             display: flex;
-            justify-items: center;
+            justify-items: start;
             align-items: center;
+            flex-wrap: wrap;
             border: 5px;
             border-radius: 10px;
-            height: 500px;
-            width: 500px;
         }
         h1{
             font-size: 30px;
-            color: lawngreen;
-            animation: slide 1s ease infinite;
+            color: yellow;
+            animation: slide 0.8s ease infinite;
         }
         @keyframes slide {
             0%{
                 transform: scale(0)
             }
             50% {
-                tranform: scaleX(1.3)
+                tranform: scale(1.3)
+            }
+        }
+
+        .moving{
+            animation: move 1s ease-in-out infinite;
+        }
+        @keyframes move {
+            0%{
+                transform: translateX(0px);
+                opacity: 0;
+            }
+            50%{
+                transform: translateX(150px);
+                opacity: 100;
             }
         }
     </style>
@@ -37,7 +51,18 @@
 <body style="background-color: black; color:#FFFFFF;">
     <div id="div">
         <h1>Loopy</h1>
+
+        <div style="background-color: rgb(164, 164, 164); height: 100px; width: 100px; overflow-x: hidden;">
+
+        <div style="padding: 10px 20px; border-color: blue; border: 2px solid yellow; color: red;">
+            <button class="moving" style="padding: 5px; color:black; font-weight: 600;">>></button>
+        </div>
     </div>
+  
+    </div>
+    <p style="color: yellow; font-size: 30px; background-color: red; text-align: center;">Loading Effect</p>  
+
+    
 
     
 </body>

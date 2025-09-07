@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <link rel="shortcut icon" href="../mern.jpg" type="image/x-icon">
+</head>
+<body style="background-color: black; padding: 30px; display: flex; justify-items: center; align-items: center;">
+
+    <form id="form" style="background-color: azure; padding: 20px; border-radius: 50px; display: flex; justify-items: center; align-items: center; gap: 10px; flex-direction: column;"
+        >
+        <label style="color: red;" for="name">Name: </label> 
+        <input type="text" name="name" id="name" style="padding: 10px; border-radius: 20px; color: black;">
+        <label style="color: red;" for="email">Email: </label> 
+        <input type="email" name="email" id="email" style="padding: 10px; border-radius: 20px; color: black;">
+        <label style="color: red;" for="password">Password: </label> 
+        <input type="password" name="password" id="password" style="padding: 10px; border-radius: 20px; color: black;">
+        <button type="submit" id="btn" style="background-color: #02d502; padding: 5px 10px; color: azure; border-radius: 20px;">Submit</button>
+    </form>
+
+    <script>
+        const form = document.getElementById("form");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            let name = document.querySelector("#name").value.trim()
+            let email = document.querySelector("#email").value.trim()
+            let password = document.querySelector("#password").value
+            let btn = document.querySelector("#btn")
+
+            if(!name){
+                  alert("Enter the name")
+                  return
+            }
+            if(!email.includes("@")){
+                  alert("Enter correct email")
+                  return
+            }
+            if(password.length < 6){
+                  alert("Password must be atleast 6 charcter long")
+                  return
+            }
+             alert("Form submitted")
+             console.log("Form Data", {name, email, password})
+        })
+
+       
+
+    </script>
+    
+</body>
+</html>
