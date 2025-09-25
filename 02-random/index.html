@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Random color and set into body</title>
+    <link rel="shortcut icon" href="../mern.jpg" type="image/x-icon">
+</head>
+<body style="padding: 50px; transition: background-color 0.5s;">
+    <button onclick="randomColor()" id="start" style="width: 100px;" >Click me!</button>
+    <button onclick="stopColor()" id="stop" style="width: 100px;">Stop</button>
+     <button id="change">Click me</button>
+    
+     <!-- Change background color using a string -->
+    <script>
+        let body = document.body;
+        let button = document.querySelector("#start");
+        let button2 = document.querySelector("#stop");
+        let hex = "0123456789ABCDEF";
+
+        let interValid = null;
+
+        function randomColor(){
+            let hexColor = '#';
+
+            for (let i = 0; i < 6; i++) {
+                hexColor += hex[Math.floor(Math.random() * hex.length)];
+                // console.log(hexColor);
+                
+            }
+            return hexColor;
+        }
+
+        button.addEventListener("click", ()=> {
+            if(interValid !== null) return;
+       interValid = setInterval(() => {
+            body.style.backgroundColor = randomColor();
+          }, 500);
+        })
+
+        function stopColor(){
+            clearInterval(interValid)
+        }
+
+    </script>
+   
+   <!-- Change color using a given array -->
+     <script>
+        let box = document.body;
+        let btn = document.getElementById("change")
+        let colors = ["red", "blue", "yellow", 'green'];
+        let currentInex = 0;
+
+       btn.addEventListener("click", () => {
+        body.style.backgroundColor = colors[currentInex];
+
+        currentInex = (currentInex + 1) % colors.length
+       })
+    </script> 
+
+</body>
+</html>
