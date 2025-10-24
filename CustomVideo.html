@@ -1,0 +1,162 @@
+<html>
+  <head>
+    <title>Custom video element</title>
+    <style>
+      body {
+  background-color: #000;
+  display: flex;
+  justify-content: center;
+  padding: 50px;
+  font-family: sans-serif;
+}
+
+.ph-player {
+  position: relative;
+  width: 800px;
+  max-width: 100%;
+  background: #000;
+  border: 2px solid #222;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+video {
+  width: 100%;
+  display: block;
+}
+
+.ph-controls {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(0,0,0,0.7);
+  padding: 8px;
+  box-sizing: border-box;
+}
+
+.ph-controls button {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 18px;
+  transition: color 0.2s;
+}
+
+.ph-controls button:hover {
+  color: #f90; /* Pornhub orange */
+}
+
+.ph-progress input[type="range"] {
+  -webkit-appearance: none;
+  width: 300px;
+  height: 4px;
+  background: #333;
+  border-radius: 2px;
+  outline: none;
+}
+
+.ph-progress input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  background: #f90;
+  cursor: pointer;
+}
+
+#volume {
+  width: 70px;
+}
+
+#time {
+  color: #ccc;
+  font-size: 14px;
+}
+    </style>
+  </head>
+   <body>
+
+     <div class="ph-player">
+  <video id="phVideo" width="800">
+    <source src="sample.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="ph-controls">
+    <button id="playPause"><i>▶️</i></button>
+    <div class="ph-progress">
+      <input type="range" id="seekBar" value="0" min="0" max="100">
+    </div>
+    <span id="time">00:00 / 00:00</span>
+    <button id="mute">🔈</button>
+    <input type="range" id="volume" min="0" max="1" step="0.05" value="1">
+    <button id="fullscreen">⛶</button>
+  </div>
+</div>
+
+
+     <script>
+const video = document.getElementById('phVideo');
+const playPause = document.getElementById('playPause');
+const seekBar = document.getElementById('seekBar');
+const muteBtn = document.getElementById('mute');
+const volume = document.getElementById('volume');
+const fullscreen = document.getElementById('fullscreen');
+const timeDisplay = document.getElementById('time');
+
+function formatTime(sec) {
+  const m = Math.floor(sec / 60);
+  const s = Math.floor(sec % 60);
+  return `${m.toString().padStart(2,'0')}:${s.toString().padStart(2,'0')}`;
+}
+
+// Play/Pause
+playPause.addEventListener('click', () => {
+  if (video.paused) {
+    video.play();
+    playPause.innerHTML = '<i>⏸️</i>';
+  } else {
+    video.pause();
+    playPause.innerHTML = '<i>▶️</i>';
+  }
+});
+
+// Update Progress
+video.addEventListener('timeupdate', () => {
+  const value = (video.currentTime / video.duration) * 100;
+  seekBar.value = value;
+  timeDisplay.textContent = `${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+});
+
+// Seek Bar
+seekBar.addEventListener('input', () => {
+  video.currentTime = (seekBar.value / 100) * video.duration;
+});
+
+// Mute
+muteBtn.addEventListener('click', () => {
+  video.muted = !video.muted;
+  muteBtn.textContent = video.muted ? '🔇' : '🔈';
+});
+
+// Volume
+volume.addEventListener('input', () => {
+  video.volume = volume.value;
+});
+
+// Fullscreen
+fullscreen.addEventListener('click', () => {
+  if (document.fullscreenElement) {
+    document.exitFullscreen();
+  } else {
+    video.requestFullscreen();
+  }
+});
+       
+     </script>
+   </body>
+</html>
