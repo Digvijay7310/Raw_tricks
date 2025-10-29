@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced JS Event Demo</title>
+<style>
+  body { font-family: Arial, sans-serif; margin: 30px; background:#f9f9f9; }
+  h1 { text-align:center; color:#0066cc; }
+  .section { border:2px solid #ccc; border-left:6px solid #0066cc; padding:15px; margin:25px 0; background:white; border-radius:8px; }
+  .section h2 { margin-top:0; color:#0066cc; }
+  .result { background:#eee; padding:10px; margin-top:10px; border-radius:5px; font-family:monospace; min-height:20px; }
+  .draggable { width:100px; height:100px; background:#ffc107; margin:10px; display:inline-block; cursor:move; }
+  #dropArea { width:150px; height:150px; border:2px dashed #333; display:inline-block; vertical-align:top; text-align:center; line-height:150px; margin-left:20px; }
+  input, button { margin:5px; padding:6px; }
+</style>
+</head>
+<body>
+
+<h1>💡 Advanced JavaScript Events Demo</h1>
+
+<!-- Section 1: Drag & Drop -->
+<div class="section">
+  <h2>1️⃣ Drag & Drop</h2>
+  <div id="dragItem" class="draggable" draggable="true">Drag me</div>
+  <div id="dropArea">Drop here</div>
+  <div class="result" id="dragResult">Waiting for drag...</div>
+</div>
+
+<!-- Section 2: Checkbox / Radio -->
+<div class="section">
+  <h2>2️⃣ Checkbox & Radio</h2>
+  <label><input type="checkbox" id="chk1"> Checkbox 1</label>
+  <label><input type="checkbox" id="chk2"> Checkbox 2</label>
+  <br>
+  <label><input type="radio" name="color" value="Red"> Red</label>
+  <label><input type="radio" name="color" value="Blue"> Blue</label>
+  <div class="result" id="checkResult">No selection yet</div>
+</div>
+
+<!-- Section 3: Mouse Enter / Leave -->
+<div class="section">
+  <h2>3️⃣ Mouse Enter / Leave</h2>
+  <div id="hoverBox" style="width:150px;height:100px;background:#90caf9;text-align:center;line-height:100px;">Hover me</div>
+  <div class="result" id="hoverResult">Mouse status</div>
+</div>
+
+<!-- Section 4: Wheel Event -->
+<div class="section">
+  <h2>4️⃣ Wheel / Scroll Event on Box</h2>
+  <div id="wheelBox" style="width:200px;height:100px;background:#c8e6c9;text-align:center;line-height:100px;overflow:auto;">
+    Scroll inside me
+    <div style="height:300px;"></div>
+  </div>
+  <div class="result" id="wheelResult">Scroll value</div>
+</div>
+
+<!-- Section 5: Text Selection -->
+<div class="section">
+  <h2>5️⃣ Text Selection Event</h2>
+  <p id="selectText">Select any part of this text to trigger the event.</p>
+  <div class="result" id="selectResult">No selection yet</div>
+</div>
+
+<!-- Section 6: Input Limit / Counters -->
+<div class="section">
+  <h2>6️⃣ Input Limit & Live Counter</h2>
+  <input type="text" id="liveInput" maxlength="15" placeholder="Type here...">
+  <div class="result" id="liveResult">0 / 15</div>
+</div>
+
+<script>
+// Drag & Drop
+const dragItem = document.getElementById("dragItem");
+const dropArea = document.getElementById("dropArea");
+const dragResult = document.getElementById("dragResult");
+
+dragItem.addEventListener("dragstart", e => dragResult.textContent = "Dragging started...");
+dropArea.addEventListener("dragover", e => e.preventDefault());
+dropArea.addEventListener("drop", e => {
+  e.preventDefault();
+  dragResult.textContent = "Dropped successfully!";
+});
+
+// Checkbox / Radio
+const chk1 = document.getElementById("chk1");
+const chk2 = document.getElementById("chk2");
+const checkResult = document.getElementById("checkResult");
+
+function updateCheck() {
+  let selected = [];
+  if(chk1.checked) selected.push("Checkbox 1");
+  if(chk2.checked) selected.push("Checkbox 2");
+  const radios = document.querySelectorAll('input[name="color"]:checked');
+  radios.forEach(r => selected.push(`Radio: ${r.value}`));
+  checkResult.textContent = selected.length ? selected.join(", ") : "No selection yet";
+}
+
+chk1.addEventListener("change", updateCheck);
+chk2.addEventListener("change", updateCheck);
+document.querySelectorAll('input[name="color"]').forEach(r => r.addEventListener("change", updateCheck));
+
+// Mouse Enter / Leave
+const hoverBox = document.getElementById("hoverBox");
+const hoverResult = document.getElementById("hoverResult");
+hoverBox.addEventListener("mouseenter", () => hoverResult.textContent = "Mouse entered!");
+hoverBox.addEventListener("mouseleave", () => hoverResult.textContent = "Mouse left!");
+
+// Wheel Event
+const wheelBox = document.getElementById("wheelBox");
+const wheelResult = document.getElementById("wheelResult");
+wheelBox.addEventListener("wheel", e => wheelResult.textContent = `Wheel Delta: ${e.deltaY}`);
+
+// Text Selection
+const selectText = document.getElementById("selectText");
+const selectResult = document.getElementById("selectResult");
+selectText.addEventListener("select", e => {
+  const sel = window.getSelection().toString();
+  selectResult.textContent = sel ? `Selected: "${sel}"` : "No selection";
+});
+
+// Input Limit / Counter
+const liveInput = document.getElementById("liveInput");
+const liveResult = document.getElementById("liveResult");
+liveInput.addEventListener("input", e => {
+  const len = e.target.value.length;
+  liveResult.textContent = `${len} / 15${len>=15 ? " ⚠️ Limit reached!" : ""}`;
+});
+</script>
+
+</body>
+</html>
