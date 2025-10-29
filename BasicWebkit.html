@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interactive Focus, Clipboard & WebKit CSS Demo</title>
+<style>
+body { font-family: Arial; margin: 20px; background: #f5f5f5; }
+h1 { text-align:center; color:#0077cc; }
+.section { border:2px solid #ccc; border-left:6px solid #0077cc; padding:15px; margin:25px 0; background:white; border-radius:8px; }
+.section h2 { margin-top:0; color:#0077cc; }
+.result { background:#eee; padding:10px; margin-top:10px; border-radius:5px; font-family:monospace; min-height:20px; }
+
+/* Input & textarea styling */
+input, textarea { padding:6px; margin:5px 0; width:300px; display:block; }
+
+/* WebKit CSS Examples */
+.webkit-box { width:100px; height:100px; margin:10px; display:inline-block; text-align:center; line-height:100px; color:white; font-weight:bold; }
+
+/* Gradient example */
+#webkitGradient { 
+  background: -webkit-linear-gradient(left, red, yellow);
+  background: linear-gradient(to right, red, yellow);
+}
+
+/* Border radius + Box shadow example */
+#webkitBoxShadow {
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  -webkit-box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+  background:#0077cc;
+}
+
+/* Transform + Animation */
+@-webkit-keyframes rotateAnim {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
+}
+@keyframes rotateAnim {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+#webkitTransform {
+  background:#ff9800;
+  -webkit-animation: rotateAnim 3s linear infinite;
+  animation: rotateAnim 3s linear infinite;
+}
+
+/* Scrollbar (WebKit only) */
+.scrollBox {
+  width:300px; height:100px; overflow:auto; background:#eee; padding:10px;
+}
+.scrollBox p { margin:0 0 10px; }
+.scrollBox::-webkit-scrollbar { width:10px; }
+.scrollBox::-webkit-scrollbar-thumb { background:#0077cc; border-radius:5px; }
+.scrollBox::-webkit-scrollbar-track { background:#ccc; }
+
+</style>
+</head>
+<body>
+
+<h1>🎯 Focus, Clipboard & WebKit CSS Playground</h1>
+
+<!-- Section 1: Focus / Blur -->
+<div class="section">
+<h2>1️⃣ Focus / Blur Tracking</h2>
+<input type="text" class="focusField" placeholder="Input 1">
+<input type="text" class="focusField" placeholder="Input 2">
+<div class="result" id="focusResult">Focus status will appear here</div>
+</div>
+
+<!-- Section 2: Clipboard -->
+<div class="section">
+<h2>2️⃣ Clipboard Tracking</h2>
+<textarea class="clipField" placeholder="Textarea 1"></textarea>
+<textarea class="clipField" placeholder="Textarea 2"></textarea>
+<div class="result" id="clipResult">Clipboard actions will appear here</div>
+</div>
+
+<!-- Section 3: WebKit CSS Examples -->
+<div class="section">
+<h2>3️⃣ WebKit CSS Examples</h2>
+<p>Gradient Box:</p>
+<div id="webkitGradient" class="webkit-box">Gradient</div>
+
+<p>Border Radius + Box Shadow:</p>
+<div id="webkitBoxShadow" class="webkit-box">Shadow</div>
+
+<p>Transform + Animation:</p>
+<div id="webkitTransform" class="webkit-box">Rotate</div>
+
+<p>ScrollBox (custom scrollbar):</p>
+<div class="scrollBox">
+  <p>Line 1</p><p>Line 2</p><p>Line 3</p><p>Line 4</p><p>Line 5</p>
+  <p>Line 6</p><p>Line 7</p><p>Line 8</p>
+</div>
+</div>
+
+<script>
+// 1️⃣ Focus / Blur Tracking
+const focusFields = document.querySelectorAll(".focusField");
+const focusResult = document.getElementById("focusResult");
+focusFields.forEach((input, index) => {
+  input.addEventListener("focus", () => focusResult.textContent = `✅ Input ${index+1} Focused`);
+  input.addEventListener("blur", () => focusResult.textContent = `❌ Input ${index+1} Blurred`);
+});
+
+// 2️⃣ Clipboard Tracking
+const clipFields = document.querySelectorAll(".clipField");
+const clipResult = document.getElementById("clipResult");
+clipFields.forEach((textarea, index) => {
+  textarea.addEventListener("copy", () => clipResult.textContent = `📋 Text copied from Textarea ${index+1}`);
+  textarea.addEventListener("cut", () => clipResult.textContent = `✂️ Text cut from Textarea ${index+1}`);
+  textarea.addEventListener("paste", () => clipResult.textContent = `📥 Text pasted into Textarea ${index+1}`);
+});
+</script>
+
+</body>
+</html>
