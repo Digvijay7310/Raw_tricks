@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Events Demo (15 Types)</title>
+<style>
+  body {
+    font-family: "Segoe UI", sans-serif;
+    margin: 30px;
+    background: #f4f7fa;
+    color: #333;
+  }
+  h1 {
+    text-align: center;
+    color: #0077cc;
+  }
+  .section {
+    border: 2px solid #ccc;
+    border-left: 6px solid #0077cc;
+    padding: 15px;
+    margin: 25px 0;
+    background: white;
+    border-radius: 8px;
+  }
+  .section h2 {
+    margin-top: 0;
+    color: #0077cc;
+  }
+  .result {
+    background: #f1f1f1;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    font-family: monospace;
+  }
+  input, button, select {
+    padding: 8px;
+    margin: 5px 0;
+    font-size: 15px;
+  }
+</style>
+</head>
+<body>
+
+<h1>🔥 15 JavaScript Events Demo (All in Sections)</h1>
+<p style="text-align:center">Interact with the elements below — each section shows a different event type.</p>
+
+<!-- Section 1: Load Event -->
+<div class="section" id="sec1">
+  <h2>1️⃣ Page Load Event</h2>
+  <div class="result" id="loadResult">Waiting for page load...</div>
+</div>
+
+<!-- Section 2: Click Event -->
+<div class="section" id="sec2">
+  <h2>2️⃣ Click Event</h2>
+  <button id="btnClick">Click Me</button>
+  <div class="result" id="clickResult">No click yet.</div>
+</div>
+
+<!-- Section 3: Double Click -->
+<div class="section" id="sec3">
+  <h2>3️⃣ Double Click Event</h2>
+  <button id="btnDblClick">Double Click Me</button>
+  <div class="result" id="dblClickResult">No double-click yet.</div>
+</div>
+
+<!-- Section 4: Mouse Over / Out -->
+<div class="section" id="sec4">
+  <h2>4️⃣ Mouse Over & Out</h2>
+  <div id="mouseArea" style="width:200px;height:80px;background:#e3f2fd;text-align:center;line-height:80px;">
+    Hover Me
+  </div>
+  <div class="result" id="mouseResult">Hover status will appear here.</div>
+</div>
+
+<!-- Section 5: Input Event -->
+<div class="section" id="sec5">
+  <h2>5️⃣ Input Event</h2>
+  <input type="text" id="textInput" maxlength="20" placeholder="Type something...">
+  <div class="result" id="inputResult">No input yet.</div>
+</div>
+
+<!-- Section 6: Focus & Blur -->
+<div class="section" id="sec6">
+  <h2>6️⃣ Focus & Blur</h2>
+  <input type="text" id="focusInput" placeholder="Click and move away">
+  <div class="result" id="focusResult">No focus/blur yet.</div>
+</div>
+
+<!-- Section 7: KeyDown & KeyUp -->
+<div class="section" id="sec7">
+  <h2>7️⃣ KeyDown & KeyUp</h2>
+  <input type="text" id="keyInput" placeholder="Press any key...">
+  <div class="result" id="keyResult">No key pressed yet.</div>
+</div>
+
+<!-- Section 8: Form Submit -->
+<div class="section" id="sec8">
+  <h2>8️⃣ Form Submit Event</h2>
+  <form id="myForm">
+    <input type="text" placeholder="Enter name..." required>
+    <button type="submit">Submit</button>
+  </form>
+  <div class="result" id="formResult">Form not submitted yet.</div>
+</div>
+
+<!-- Section 9: Change Event -->
+<div class="section" id="sec9">
+  <h2>9️⃣ Change Event</h2>
+  <select id="dropdown">
+    <option value="">-- Select Fruit --</option>
+    <option value="apple">🍎 Apple</option>
+    <option value="banana">🍌 Banana</option>
+    <option value="mango">🥭 Mango</option>
+  </select>
+  <div class="result" id="changeResult">No selection yet.</div>
+</div>
+
+<!-- Section 10: Scroll Event -->
+<div class="section" id="sec10" style="height:200px;overflow:auto;">
+  <h2>🔟 Scroll Event</h2>
+  <div style="height:400px;">Scroll inside this box to trigger event</div>
+  <div class="result" id="scrollResult">Scroll position: 0</div>
+</div>
+
+<!-- Section 11: Resize -->
+<div class="section" id="sec11">
+  <h2>1️⃣1️⃣ Window Resize</h2>
+  <div class="result" id="resizeResult">Resize the browser to see effect.</div>
+</div>
+
+<!-- Section 12: Context Menu -->
+<div class="section" id="sec12">
+  <h2>1️⃣2️⃣ Right Click (Context Menu)</h2>
+  <div style="background:#ffe0b2;padding:15px;" id="rightClickArea">Right click here</div>
+  <div class="result" id="contextResult">No right-click yet.</div>
+</div>
+
+<!-- Section 13: Mouse Move -->
+<div class="section" id="sec13">
+  <h2>1️⃣3️⃣ Mouse Move</h2>
+  <div id="moveArea" style="width:250px;height:100px;background:#c8e6c9;text-align:center;line-height:100px;">
+    Move Mouse Here
+  </div>
+  <div class="result" id="moveResult">Move your mouse inside the box.</div>
+</div>
+
+<!-- Section 14: Copy & Paste -->
+<div class="section" id="sec14">
+  <h2>1️⃣4️⃣ Copy & Paste Events</h2>
+  <input type="text" id="copyInput" placeholder="Try copying/pasting here">
+  <div class="result" id="copyResult">No copy/paste yet.</div>
+</div>
+
+<!-- Section 15: Input Limit Check -->
+<div class="section" id="sec15">
+  <h2>1️⃣5️⃣ Input Length Limit Check</h2>
+  <input type="text" id="limitInput" maxlength="10" placeholder="Max 10 chars">
+  <div class="result" id="limitResult">Length: 0/10</div>
+</div>
+
+<script>
+// Helper for updating result text
+function show(id, msg) {
+  document.getElementById(id).textContent = msg;
+}
+
+// 1️⃣ Page Load
+window.addEventListener("load", () => show("loadResult", "✅ Page fully loaded!"));
+
+// 2️⃣ Click
+document.getElementById("btnClick").addEventListener("click", () => show("clickResult", "🖱️ Button clicked!"));
+
+// 3️⃣ Double Click
+document.getElementById("btnDblClick").addEventListener("dblclick", () => show("dblClickResult", "✨ Double click detected!"));
+
+// 4️⃣ Mouse Over / Out
+const mouseArea = document.getElementById("mouseArea");
+mouseArea.addEventListener("mouseover", () => show("mouseResult", "🐭 Mouse entered the area"));
+mouseArea.addEventListener("mouseout", () => show("mouseResult", "🚪 Mouse left the area"));
+
+// 5️⃣ Input
+const textInput = document.getElementById("textInput");
+textInput.addEventListener("input", e => {
+  show("inputResult", `⌨️ Typed: "${e.target.value}" (${e.target.value.length}/20)`);
+});
+
+// 6️⃣ Focus / Blur
+const focusInput = document.getElementById("focusInput");
+focusInput.addEventListener("focus", () => show("focusResult", "✏️ Input focused"));
+focusInput.addEventListener("blur", () => show("focusResult", "💤 Input unfocused"));
+
+// 7️⃣ KeyDown & KeyUp
+const keyInput = document.getElementById("keyInput");
+keyInput.addEventListener("keydown", e => show("keyResult", `Key Down: ${e.key}`));
+keyInput.addEventListener("keyup", e => show("keyResult", `Key Up: ${e.key}`));
+
+// 8️⃣ Form Submit
+document.getElementById("myForm").addEventListener("submit", e => {
+  e.preventDefault();
+  show("formResult", "📨 Form submitted successfully!");
+});
+
+// 9️⃣ Change Event
+document.getElementById("dropdown").addEventListener("change", e => {
+  show("changeResult", `🍎 Selected: ${e.target.value || 'None'}`);
+});
+
+// 🔟 Scroll (Inside Box)
+const scrollBox = document.getElementById("sec10");
+scrollBox.addEventListener("scroll", () => {
+  show("scrollResult", `🌀 Scroll position: ${scrollBox.scrollTop}px`);
+});
+
+// 1️⃣1️⃣ Resize
+window.addEventListener("resize", () => {
+  show("resizeResult", `📏 Window size: ${window.innerWidth} × ${window.innerHeight}`);
+});
+
+// 1️⃣2️⃣ Context Menu (Right Click)
+const rightClickArea = document.getElementById("rightClickArea");
+rightClickArea.addEventListener("contextmenu", e => {
+  e.preventDefault();
+  show("contextResult", "🚫 Right-click blocked on this area!");
+});
+
+// 1️⃣3️⃣ Mouse Move
+const moveArea = document.getElementById("moveArea");
+moveArea.addEventListener("mousemove", e => {
+  show("moveResult", `🖱️ Mouse Position: X=${e.offsetX}, Y=${e.offsetY}`);
+});
+
+// 1️⃣4️⃣ Copy & Paste
+const copyInput = document.getElementById("copyInput");
+copyInput.addEventListener("copy", () => show("copyResult", "📋 Text copied!"));
+copyInput.addEventListener("paste", () => show("copyResult", "📥 Text pasted!"));
+
+// 1️⃣5️⃣ Input Length Check
+const limitInput = document.getElementById("limitInput");
+limitInput.addEventListener("input", e => {
+  const len = e.target.value.length;
+  show("limitResult", `Length: ${len}/10`);
+  if (len >= 10) show("limitResult", `⚠️ Limit reached (10/10)!`);
+});
+</script>
+
+</body>
+</html>
