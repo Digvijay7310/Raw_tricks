@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Focus & Clipboard Events</title>
+<style>
+body { font-family: Arial; margin: 30px; background:#f5f5f5; }
+h1 { text-align:center; color:#0077cc; }
+.section { border:2px solid #ccc; border-left:6px solid #0077cc; padding:15px; margin:25px 0; background:white; border-radius:8px; }
+.section h2 { margin-top:0; color:#0077cc; }
+.result { background:#eee; padding:10px; margin-top:10px; border-radius:5px; font-family:monospace; min-height:20px; }
+input, textarea { padding:6px; margin:5px; width:300px; }
+</style>
+</head>
+<body>
+
+<h1>📋 Focus & Clipboard Events Demo</h1>
+
+<!-- Focus / Blur Section -->
+<div class="section">
+  <h2>1️⃣ Focus / Blur</h2>
+  <input type="text" id="focusInput" placeholder="Click here to focus">
+  <div class="result" id="focusResult">Focus status will appear here</div>
+</div>
+
+<!-- Clipboard Section -->
+<div class="section">
+  <h2>2️⃣ Clipboard: Copy, Cut, Paste</h2>
+  <textarea id="clipText" placeholder="Type here and try copy/cut/paste"></textarea>
+  <div class="result" id="clipResult">Clipboard actions will appear here</div>
+</div>
+
+<script>
+// Focus / Blur
+const focusInput = document.getElementById("focusInput");
+const focusResult = document.getElementById("focusResult");
+
+focusInput.addEventListener("focus", () => focusResult.textContent = "✅ Focused!");
+focusInput.addEventListener("blur", () => focusResult.textContent = "❌ Blurred!");
+
+// Clipboard Events
+const clipText = document.getElementById("clipText");
+const clipResult = document.getElementById("clipResult");
+
+clipText.addEventListener("copy", () => clipResult.textContent = "📋 Text copied!");
+clipText.addEventListener("cut", () => clipResult.textContent = "✂️ Text cut!");
+clipText.addEventListener("paste", () => clipResult.textContent = "📥 Text pasted!");
+</script>
+
+</body>
+</html>
