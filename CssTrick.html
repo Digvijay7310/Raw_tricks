@@ -16,15 +16,15 @@ input, textarea { padding:6px; margin:5px 0; width:300px; display:block; }
 .trick-box { margin:10px 0; padding:15px; color:white; text-align:center; font-weight:bold; }
 
 /* 1. Text Shadow */
-.text-shadow { color:#fff; text-shadow: 2px 2px 5px #0077cc, -2px -2px 5px #ff9800; background:#333; }
+.text-shadow { color:#fff; text-shadow: 2px 2px 10px #0077cc, -2px -2px 5px #ff9800; background:#333; }
 
 /* 2. Box Shadow */
 .box-shadow { width:150px; height:100px; background:#0077cc; 
-  box-shadow:10px 10px 20px rgba(0,0,0,0.3), -5px -5px 10px rgba(255,255,255,0.2); border-radius:10px;
+  box-shadow: 10px 10px 20px rgba(0,0,0,0.3), -5px -5px 10px rgba(255,255,255,0.2); border-radius:10px;
 }
 
 /* 3. Gradient Background */
-.gradient-bg { background: linear-gradient(45deg,#ff9800,#0077cc); }
+.gradient-bg { background: linear-gradient(50deg,#ff9800,#0077cc); }
 
 /* 4. Hover Effect */
 .button-hover { background:#0077cc; color:white; padding:10px 20px; border:none; border-radius:5px; transition: all 0.3s ease; display:inline-block; cursor:pointer; }
@@ -77,21 +77,6 @@ input, textarea { padding:6px; margin:5px 0; width:300px; display:block; }
 
 <h1>🎯 Interactive CSS & JS Playground</h1>
 
-<!-- Section 1: Focus / Blur -->
-<div class="section">
-<h2>1️⃣ Focus / Blur Tracking</h2>
-<input type="text" class="focusField" placeholder="Input 1">
-<input type="text" class="focusField" placeholder="Input 2">
-<div class="result" id="focusResult">Focus status will appear here</div>
-</div>
-
-<!-- Section 2: Clipboard -->
-<div class="section">
-<h2>2️⃣ Clipboard Tracking</h2>
-<textarea class="clipField" placeholder="Textarea 1"></textarea>
-<textarea class="clipField" placeholder="Textarea 2"></textarea>
-<div class="result" id="clipResult">Clipboard actions will appear here</div>
-</div>
 
 <!-- Section 3: CSS Tricks -->
 <div class="section">
@@ -131,24 +116,6 @@ input, textarea { padding:6px; margin:5px 0; width:300px; display:block; }
 
 </div>
 
-<script>
-// Focus / Blur Tracking
-const focusFields = document.querySelectorAll(".focusField");
-const focusResult = document.getElementById("focusResult");
-focusFields.forEach((input,index)=>{
-  input.addEventListener("focus",()=>focusResult.textContent=`✅ Input ${index+1} Focused`);
-  input.addEventListener("blur",()=>focusResult.textContent=`❌ Input ${index+1} Blurred`);
-});
-
-// Clipboard Tracking
-const clipFields = document.querySelectorAll(".clipField");
-const clipResult = document.getElementById("clipResult");
-clipFields.forEach((textarea,index)=>{
-  textarea.addEventListener("copy",()=>clipResult.textContent=`📋 Text copied from Textarea ${index+1}`);
-  textarea.addEventListener("cut",()=>clipResult.textContent=`✂️ Text cut from Textarea ${index+1}`);
-  textarea.addEventListener("paste",()=>clipResult.textContent=`📥 Text pasted into Textarea ${index+1}`);
-});
-</script>
 
 </body>
 </html>
