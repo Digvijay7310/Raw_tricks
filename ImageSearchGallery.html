@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Search Gallery</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f5f6fa;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem;
+    }
+
+    h1 {
+      margin-bottom: 1rem;
+      color: #1e90ff;
+      text-align: center;
+    }
+
+    .search-bar {
+      width: 100%;
+      max-width: 500px;
+      display: flex;
+      margin-bottom: 2rem;
+    }
+
+    .search-bar input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 2px solid #1e90ff;
+      border-radius: 8px 0 0 8px;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .search-bar button {
+      background: #1e90ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 0 8px 8px 0;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .search-bar button:hover {
+      background: #0077e6;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      width: 100%;
+      max-width: 1000px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.03);
+    }
+
+    .card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+    }
+
+    .card p {
+      padding: 10px;
+      text-align: center;
+      font-weight: 500;
+      color: #555;
+    }
+
+    @media (max-width: 600px) {
+      .search-bar input {
+        font-size: 0.9rem;
+      }
+      .card img {
+        height: 140px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Image Search Gallery</h1>
+  
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search image (e.g., nature, city, cat)">
+    <button onclick="searchImages()">Search</button>
+  </div>
+
+  <div class="gallery" id="gallery">
+    <!-- Images will appear here -->
+  </div>
+
+  <script>
+    const images = [
+      { title: 'Nature', url: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80' },
+      { title: 'City', url: 'https://images.unsplash.com/photo-1508057198894-247b23fe5ade?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Beach', url: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Mountain', url: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Cat', url: 'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Dog', url: 'https://images.unsplash.com/photo-1507149833265-60c372daea22?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Forest', url: 'https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=800&q=80' },
+      { title: 'Space', url: 'https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=800&q=80' },
+    ];
+
+    const gallery = document.getElementById('gallery');
+
+    function showImages(list) {
+      gallery.innerHTML = '';
+      list.forEach(img => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `<img src="${img.url}" alt="${img.title}">
+                          <p>${img.title}</p>`;
+        gallery.appendChild(card);
+      });
+    }
+
+    function searchImages() {
+      const query = document.getElementById('searchInput').value.trim().toLowerCase();
+      const filtered = images.filter(img => img.title.toLowerCase().includes(query));
+      
+      if (filtered.length > 0) {
+        showImages(filtered);
+      } else {
+        // show 3 random images
+        const randoms = images.sort(() => 0.5 - Math.random()).slice(0, 3);
+        showImages(randoms);
+      }
+    }
+
+    // Show initial images
+    showImages(images);
+  </script>
+
+</body>
+</html>
