@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizontally loading</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            gap: 100px;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: whitesmoke;
+        }
+
+        h1 {
+            font-family: sans-serif;
+            color: #444;
+        }
+
+        .loading {
+            height: 30px;
+            width: 400px;
+            border-radius: 30px;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .one {
+            background-color: red;
+            height: 20px;
+            width: 200px;
+            border-radius: 20px;
+            position: absolute;
+            left: 0;
+            animation: scroll 5s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.7);
+            overflow: hidden;
+        }
+
+        /* Moving internal glow effect */
+        .shine {
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                rgba(255,255,255,0) 0%,
+                rgba(255,255,255,0.7) 50%,
+                rgba(255,255,255,0) 100%
+            );
+            animation: shineMove 2s linear infinite;
+            filter: blur(3px);
+        }
+
+        @keyframes scroll {
+            0% { left: 0%; }
+            50% { left: calc(100% - 200px); }
+            100% { left: 0%; }
+        }
+
+        @keyframes shineMove {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Horizontally Smooth Loading Animation</h1>
+    <div class="loading">
+        <div class="one">
+            <div class="shine"></div>
+        </div>
+    </div>
+</body>
+</html>
