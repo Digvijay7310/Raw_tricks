@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Queries change colors</title>
+    <style>
+        body{
+            background-color: #f4f0f9;
+            margin: 0;
+        }
+        .custom-color{
+            background-color: red;
+            padding: 10px;
+            margin-bottom: 20px;
+        } 
+        /* Dark mode preference by device */
+        @media(prefers-color-scheme: dark) {
+            .custom-color{
+                background-color: greenyellow;
+            }
+        } 
+        .changer{
+            background-color: aquamarine;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+
+        }
+        @media (max-width: 500px) {
+            .changer{
+                background-color: rgb(255, 173, 20);
+            }
+        }
+        h3{
+            font-size: 25px;
+            font-weight: 900;
+        }
+        button{
+            background-color: #0000f3;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            letter-spacing: 4px;
+            font-weight: 600;
+        }
+        button:hover{
+            transform: scale(1.1);
+            transition: 0.3s ease;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-color">Color Change as per device theme preference.</div>
+    <div class="changer">
+        <h3>Web Development</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis doloremque enim asperiores, molestiae veniam alias maxime doloribus sed quis dignissimos
+       </p> 
+       <button>Start Learning</button>
+      <div>
+</body>
+</html>
