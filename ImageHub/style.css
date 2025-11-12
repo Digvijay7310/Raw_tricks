@@ -1,0 +1,39 @@
+body{
+    font-family: Arial, sans-serif;
+    padding: 20px;
+}
+header{
+    text-align: center;
+    font-size: 2rem;
+    letter-spacing: 5px;
+}
+.search-box{
+    width: 80%;
+    max-width: 800px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1ps solid #ccc;
+    border-radius: 5px;
+}
+
+.gallery{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+.image-card{
+    position: relative;
+}
+.image-card img{
+    width: 100%;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+.image-card img:hover{
+    transform: scale(1.05);
+}
+.no-result{
+    text-align: center;
+    color: #666;
+    margin-top: 20px;
+}
