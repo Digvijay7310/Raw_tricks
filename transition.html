@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transition Effect on button Click</title>
+
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            background-color: aliceblue;
+        }
+        button{
+            background: #494747;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .create-effect{
+            position: fixed;
+            top: 20%;
+            height: 400px;
+            width: 100%;
+            background: radial-gradient(circle, white, red, blue, yellow );
+            animation: changer 2s ease-in-out infinite;
+            background-size: 400% 400%;
+        }
+        @keyframes changer {
+    0%{
+        background-position: 0% 50%;
+    }
+    50%{
+        background-position: 100% 50%;
+    }
+    100%{
+        background-position: 0% 50%;
+    }
+}
+
+        /* -------------------- TOP SLIDE -------------------- */
+        #slides{
+            background: #000;
+            color: #fff;
+            width: 20px;
+            height: 100px;
+            padding: 20px;
+            position: fixed;
+            top: -250px;    
+            left: 50%;
+            transform: translateX(-50%);
+            transition: top 0.3s ease;
+        }
+        #slides.active{
+            top: 40%;
+            transform: translate(-50%, -50%);
+        }
+
+        /* -------------------- LEFT SLIDE -------------------- */
+        #slides-left{
+            background: #000;
+            padding: 20px;
+            color: #fff;
+            width: 100px;
+            height: 20px;
+            position: fixed;
+            top: 50%;
+            left: -250px;       
+            transform: translateY(-50%);
+            transition: left 0.4s ease;
+        }
+        #slides-left.active{
+            left: 5%;
+            bottom: 20%;
+        }
+
+        /* -------------------- RIGHT SLIDE -------------------- */
+        #slides-right{
+            background: #000;
+            padding: 20px;
+            color: white;
+            width: 100px;
+            height: 20px;
+            position: fixed;
+            top: 50%;
+            right: -250px;      
+            transform: translateY(-50%);
+            transition: right 0.3s ease;
+        }
+        #slides-right.active{
+            right: 5%;
+            bottom: 20%;
+        }
+
+        /* -------------------- BOTTOM SLIDE -------------------- */
+        #slides-bottom{
+            background: #000;
+            padding: 20px;
+            color: white;
+            width: 20px;
+            height: 100px;
+            position: fixed;
+            bottom: -250px;    
+            left: 50%;
+            transform: translateX(-50%);
+            transition: bottom 0.3s ease;
+        }
+        #slides-bottom.active{
+            bottom: 30%;
+        }
+    </style>
+</head>
+<body>
+
+<button>Click here to see transition</button>
+
+<div class="create-effect">
+    <div id="slides">
+</div>
+
+<div id="slides-left">
+</div>
+
+<div id="slides-right">
+</div>
+
+<div id="slides-bottom">
+</div>
+</div>
+
+<script>
+    const button = document.querySelector("button");
+    const slides = document.getElementById("slides");
+    const slidesLeft = document.getElementById("slides-left");
+    const slidesRight = document.getElementById("slides-right");
+    const slidesBottom = document.getElementById("slides-bottom");
+
+    button.addEventListener("click", () => {
+        slides.classList.toggle("active");
+        slidesLeft.classList.toggle("active");
+        slidesRight.classList.toggle("active");
+        slidesBottom.classList.toggle("active");
+    });
+</script>
+
+</body>
+</html>
