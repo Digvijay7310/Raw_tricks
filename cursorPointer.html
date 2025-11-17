@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursor Position</title>
+    <style>
+        span{
+            background-color: lightpink;
+            padding: 20px 30px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Move Cursor and see position</h1>
+    <span></span>
+    <script>
+        let span = document.querySelector('span')
+         document.addEventListener("mousemove", (e) => {
+            let x = e.clientX;
+            let y = e.clientY;
+            span.textContent = `(${x}) : (${y})`
+         })
+    </script>
+</body>
+</html>

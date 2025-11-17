@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Move Text by button click</title>
+    <style>
+        div{
+            background-color: lightblue;
+            padding: 20px;
+            height: 300px;
+            width: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+        p{
+            position: absolute;
+            transition: all 0.3s ease-in-out;
+        }
+        button{
+            bottom: 10px;
+            left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>When mouse move inside div the text change their place</h1>
+    <div>
+        <p>Catch me if you can!</p>
+        <button>Click me</button>
+
+        <script>
+            let p = document.querySelector("p")
+            let div = document.querySelector("div")
+
+            div.addEventListener("mousemove", () => {
+                let maxX = 280;
+                let maxY = 280;
+                let x = Math.floor(Math.random() * maxX)
+                let y = Math.floor(Math.random() * maxY)
+
+                p.style.left = x + "px"
+                p.style.top = y + "px"
+            })
+        </script>
+    </div>
+</body>
+</html>

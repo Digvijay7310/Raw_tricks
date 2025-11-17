@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Changer by button</title>
+    <style>
+        button{
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        div{
+            height: 400px;
+            width: 400px;
+            border-radius: 10px;
+            transition: 0.1s ease-in;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Click on buttons to see the color of div</h1>
+        <button id="red">Red</button>
+        <button id="blue">Blue</button>
+        <button id="yellow">Yellow</button>
+        <button id="green">Green</button>
+
+        <div></div>
+
+        <script>
+            let red = document.getElementById("red")
+            let blue = document.getElementById("blue")
+            let yellow = document.getElementById("yellow")
+            let green = document.getElementById("green")
+            let div = document.querySelector("div")
+
+            red.addEventListener("click", () => {
+                div.style.backgroundColor = "red"
+            })
+
+            blue.addEventListener("click", () => {
+                div.style.backgroundColor = "blue"
+            })
+
+            yellow.addEventListener("click", () => {
+                div.style.backgroundColor = "yellow"
+            })
+
+            green.addEventListener("click", () => {
+                div.style.backgroundColor = "green"
+            })
+        </script>
+    
+</body>
+</html>
