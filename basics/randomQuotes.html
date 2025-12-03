@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quotes</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-shadow: border-box;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #03031d;
+            color: #ffffff;
+        }
+        .container{
+            background-color: #07074c;
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            flex-direction: column;
+            gap: 20px;
+        }
+        h1{
+            text-align: center;
+        }
+        p{
+            font-size: 20px;
+            letter-spacing: 5px;
+            text-shadow: 2px 2px 10px red, -2px, -2px, 10px yellow;
+        }
+        button{
+            padding: 10px 20px;
+            background-color: red;
+            color: #ffffff;
+            border: none;
+            outline: none;
+            border-radius: 5px;
+        }
+        #quotes{
+            height: 200px;
+            width: 200px;
+            background-color: transparent;
+            border: 2px solid yellow;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quotes of the time </h1>
+        <p>All Quotes here.</p>
+        <button onclick="getQuotes()">get quotes</button>
+        <div id="quotes"></div>
+    </div>
+
+    <script>
+        const quotes = ["The only limit to our realization of tomorrow is our doubts of today.” – Franklin D. Roosevelt",
+         "Be yourself; everyone else is already taken.” – Oscar Wilde",
+         "Do what you can, with what you have, where you are.” – Theodore Roosevelt",
+         "Life is what happens when you’re busy making other plans.” – John Lennon",
+         "Happiness is not something ready made. It comes from your own actions.” – Dalai Lama",
+         "In the middle of every difficulty lies opportunity.” – Albert Einstein",
+         "The best way to predict the future is to create it.” – Peter Drucker",
+         "If you want to go fast, go alone. If you want to go far, go together.” – African Proverb"
+    ]
+        function getQuotes(){
+            let randomIndex = Math.floor(Math.random() * quotes.length);
+
+            document.getElementById("quotes").innerText = quotes[randomIndex]
+        }
+
+
+    </script>
+</body>
+</html>

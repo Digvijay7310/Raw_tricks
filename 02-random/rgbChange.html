@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGB Color change</title>
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hello Color is changer</h1>
+    <button onclick="changeBg()">Click to change bg</button>
+
+    <script>
+        function changeBg(){
+            let r = Math.floor(Math.random() * 250)
+            let g = Math.floor(Math.random() * 250)
+            let b = Math.floor(Math.random() * 250)
+            document.body.style.backgroundColor = `rgb(${r},${g},${b})`
+        }
+    </script>
+</body>
+</html>
