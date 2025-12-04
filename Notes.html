@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Password Manager Pro</title>
+
+<style>
+    :root {
+        --bg: #f1f1f1;
+        --card: #ffffff;
+        --text: #000;
+    }
+    body.dark {
+        --bg: #111;
+        --card: #1c1c1c;
+        --text: #fff;
+    }
+
+    body {
+        margin: 0; padding: 20px;
+        font-family: Arial;
+        background: var(--bg);
+        transition: .3s ease;
+    }
+
+    h1 {
+        text-align: center;
+        color: var(--text);
+    }
+
+    .theme {
+        position: absolute; top: 20px; right: 20px;
+        padding: 10px 15px;
+        background: var(--card);
+        border-radius: 6px;
+        cursor: pointer;
+        color: var(--text);
+        box-shadow: 0 0 10px #0003;
+    }
+
+    .container {
+        max-width: 600px; margin: 30px auto;
+        background: var(--card);
+        padding: 20px; border-radius: 12px;
+        box-shadow: 0 0 15px #0003;
+    }
+
+    input, select {
+        width: 100%; padding: 10px;
+        margin: 8px 0;
+        border-radius: 6px;
+        border: 1px solid #999;
+        background: var(--card);
+        color: var(--text);
+    }
+
+    button {
+        padding: 10px;
+        width: 100%;
+        margin-top: 10px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        background: black; color: white;
+    }
+
+    .item {
+        background: dodgerblue;
+        padding: 12px;
+        border-radius: 8px;
+        margin: 10px 0;
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .item div { max-width: 80%; }
+    
+    .copy {
+        background: #000;
+        padding: 5px 10px;
+        border-radius: 6px;
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body>
+
+<div class="theme" onclick="toggleTheme()">🌙 / ☀️</div>
+
+<h1>Password Manager Pro</h1>
+
+<div class="container">
+
+    <input id="site" placeholder="Website (e.g., Facebook)" />
+    <input id="username" placeholder="Username / Email" />
+    <input id="password" placeholder="Password" />
+
+    <button onclick="generatePassword()">Generate Strong Password</button>
+    <button onclick="savePassword()">Save</button>
+
+    <input id="search" placeholder="Search..." onkeyup="render()" />
+
+    <h3 style="color: var(--text); margin-top: 20px;">Saved Passwords</h3>
+    <div id="list"></div>
+
+</div>
+
+<script>
+let vault = JSON.parse(localStorage.getItem("vault")) || [];
+
+// SIMPLE ENCRYPTION (for demonstration)
+function encrypt(text) {
+    return btoa(text.split('').reverse().join(''));
+}
+function decrypt(text) {
+    return atob(text).split('').reverse().join('');
+}
+
+// SAVE ENTRY
+function savePassword() {
+    let site = document.getElementById("site").value.trim();
+    let user = document.getElementById("username").value.trim();
+    let pass = document.getElementById("password").value.trim();
+
+    if (!site || !user || !pass) return alert("All fields required!");
+
+    vault.push({
+        site,
+        user,
+        pass: encrypt(pass)
+    });
+
+    localStorage.setItem("vault", JSON.stringify(vault));
+    clearInputs();
+    render();
+}
+
+function clearInputs() {
+    document.getElementById("site").value = "";
+    document.getElementById("username").value = "";
+    document.getElementById("password").value = "";
+}
+
+// PASSWORD GENERATOR
+function generatePassword() {
+    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()";
+    let pass = "";
+
+    for (let i = 0; i < 14; i++) {
+        pass += chars[Math.floor(Math.random() * chars.length)];
+    }
+
+    document.getElementById("password").value = pass;
+}
+
+// COPY PASSWORD
+function copyPassword(pass) {
+    navigator.clipboard.writeText(decrypt(pass));
+    alert("Password copied!");
+}
+
+// RENDER LIST
+function render() {
+    let search = document.getElementById("search").value.toLowerCase();
+    let list = document.getElementById("list");
+    list.innerHTML = "";
+
+    vault
+        .filter(v => v.site.toLowerCase().includes(search))
+        .forEach(item => {
+            list.innerHTML += `
+                <div class="item">
+                    <div>
+                        <b>${item.site}</b><br>
+                        ${item.user}<br>
+                        <small>Password: ******</small>
+                    </div>
+                    <span class="copy" onclick="copyPassword('${item.pass}')">Copy</span>
+                </div>
+            `;
+        });
+}
+
+render();
+
+// DARK MODE
+function toggleTheme() {
+    document.body.classList.toggle("dark");
+    localStorage.setItem("theme", 
+        document.body.classList.contains("dark") ? "dark" : "light"
+    );
+}
+if (localStorage.getItem("theme") === "dark") {
+    document.body.classList.add("dark");
+}
+</script>
+
+</body>
+</html>
